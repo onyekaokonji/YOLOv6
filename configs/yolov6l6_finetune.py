@@ -1,9 +1,9 @@
 # YOLOv6l6 model
 model = dict(
     type='YOLOv6l6',
-    pretrained='weights/yolov6l6.pt',
-    depth_multiple=1.0,
-    width_multiple=1.0,
+    pretrained='../assets/weights/yolov6l6.pt',
+    depth_multiple=0.33,
+    width_multiple=0.50,
     backbone=dict(
         type='CSPBepBackbone_P6',
         num_repeats=[1, 6, 12, 18, 6, 6],
@@ -47,9 +47,9 @@ solver = dict(
 )
 
 data_aug = dict(
-    hsv_h=0.0138,
-    hsv_s=0.664,
-    hsv_v=0.464,
+    hsv_h=0.015,
+    hsv_s=0.7,
+    hsv_v=0.4,
     degrees=0.373,
     translate=0.245,
     scale=0.898,
