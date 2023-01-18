@@ -59,13 +59,13 @@ class Inferer:
         model_values=[]
         aligns=im.shape
         align_bottom=aligns[0]
-        align_right=(aligns[1]/1.7 ) 
+        align_right=(aligns[1]/4) 
 
         for i, (k, v) in enumerate(founded_classes.items()):
             a=f"{k} = {v}"
             model_values.append(v)
-            align_bottom=align_bottom-35                                                 
-            cv2.putText(im, str(a), (int(align_right),align_bottom), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 1,(45,255,255),1,cv2.LINE_AA)
+            align_bottom=align_bottom-int((align_bottom*0.3))
+            cv2.putText(im, str(a), (int(align_right),align_bottom), cv2.FONT_HERSHEY_TRIPLEX, 1,(225,225,225), 1, cv2.LINE_8)
 
 
     def model_switch(self, model, img_size):
