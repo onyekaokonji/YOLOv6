@@ -12,7 +12,7 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
 from yolov6.utils.events import LOGGER
-from yolov6.core.inferer import Inferer
+from yolov6.core.inferer_and_count import Inferer
 
 
 def get_args_parser(add_help=True):
