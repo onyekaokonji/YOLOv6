@@ -1,11 +1,8 @@
-*.pt filter=lfs diff=lfs merge=lfs -text
-assets/weights/yolov6l6.pt filter=lfs diff=lfs merge=lfs -text
 assets/yoloxs.jpg filter=lfs diff=lfs merge=lfs -text
 assets/picture.png filter=lfs diff=lfs merge=lfs -text
 assets/speed_comparision_v3.png filter=lfs diff=lfs merge=lfs -text
 assets/voc_loss_curve.jpg filter=lfs diff=lfs merge=lfs -text
 assets/wechat_qrcode.png filter=lfs diff=lfs merge=lfs -text
-assets/weights filter=lfs diff=lfs merge=lfs -text
 assets/yolov6s.jpg filter=lfs diff=lfs merge=lfs -text
 assets/banner-YOLO.png filter=lfs diff=lfs merge=lfs -text
 assets/image3.jpg filter=lfs diff=lfs merge=lfs -text
