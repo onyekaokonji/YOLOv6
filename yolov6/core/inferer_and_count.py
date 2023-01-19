@@ -115,13 +115,9 @@ class Inferer:
         for i, (k, v) in enumerate(founded_classes.items()):
             a=f"{k} = {v}"
             model_values.append(v)
-            self.draw_text_count(img=im, text=str(a).capitalize(), uv_top_left=[int(im.shape[1]-(0.95*im.shape[1])), int(im.shape[0]-(0.95*im.shape[0]))])
+            self.draw_text_count(img=im, text=str(a).capitalize(),
+                                uv_top_left=[int(im.shape[1]-(0.95*im.shape[1])), int(im.shape[0]-(0.95*im.shape[0]))])
             
-        
-            
-
-
-
     def model_switch(self, model, img_size):
         ''' Model switch to deploy status '''
         from yolov6.layers.common import RepVGGBlock
