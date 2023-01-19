@@ -112,16 +112,11 @@ class Inferer:
 
     def count_objects(self, founded_classes, im):
         model_values=[]
-        # aligns=im.shape
-        # align_bottom=aligns[0]
-        # align_right=(aligns[1]/4) 
-
         for i, (k, v) in enumerate(founded_classes.items()):
             a=f"{k} = {v}"
             model_values.append(v)
             self.draw_text_count(img=im, text=str(a).capitalize(), uv_top_left=[int(im.shape[1]-(0.95*im.shape[1])), int(im.shape[0]-(0.95*im.shape[0]))])
-            # align_bottom=align_bottom-int((align_bottom*0.3))
-            # cv2.putText(im, str(a), (int(align_right),align_bottom), cv2.FONT_HERSHEY_TRIPLEX, 1,(225,225,225), 1, cv2.LINE_8)
+            
         
             
 
