@@ -1,4 +1,5 @@
-# YOLOv6-Count_Objects
+# YOLOv6_Object_Count
+A series of modifications to the [YOLO6 repo](https://github.com/meituan/YOLOv6), with the aim of counting the objects detected per frame in video.
 
 
 ###### Sample photos
