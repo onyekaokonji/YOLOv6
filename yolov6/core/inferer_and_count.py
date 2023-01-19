@@ -54,18 +54,77 @@ class Inferer:
         self.webcam_addr = webcam_addr
         self.files = LoadData(source, webcam, webcam_addr)
         self.source = source
+    
+    def draw_text_count(
+        self,
+        img,
+        *,
+        text,
+        uv_top_left,
+        color=(255, 255, 255),
+        fontScale=0.5,
+        thickness=1,
+        fontFace=cv2.FONT_HERSHEY_TRIPLEX,
+        outline_color=(0, 0, 0),
+        line_spacing=2,
+        ):
+        """
+        Draws multiline with an outline.
+        """
+        assert isinstance(text, str)
 
-    def count(self, founded_classes,im):
+        uv_top_left = np.array(uv_top_left, dtype=float)
+        assert uv_top_left.shape == (2,)
+
+        for line in text.splitlines():
+            (w, h), _ = cv2.getTextSize(
+                text=line,
+                fontFace=fontFace,
+                fontScale=fontScale,
+                thickness=thickness,
+            )
+            uv_bottom_left_i = uv_top_left + [0, w]
+            org = tuple(uv_bottom_left_i.astype(int))
+
+            if outline_color is not None:
+                cv2.putText(
+                    img,
+                    text=line,
+                    org=org,
+                    fontFace=fontFace,
+                    fontScale=fontScale,
+                    color=outline_color,
+                    thickness=thickness * 3,
+                    lineType=cv2.LINE_AA,
+                )
+            cv2.putText(
+                img,
+                text=line,
+                org=org,
+                fontFace=fontFace,
+                fontScale=fontScale,
+                color=color,
+                thickness=thickness,
+                lineType=cv2.LINE_AA,
+            )
+
+            uv_top_left += [0, h * line_spacing]
+
+    def count_objects(self, founded_classes, im):
         model_values=[]
-        aligns=im.shape
-        align_bottom=aligns[0]
-        align_right=(aligns[1]/4) 
+        # aligns=im.shape
+        # align_bottom=aligns[0]
+        # align_right=(aligns[1]/4) 
 
         for i, (k, v) in enumerate(founded_classes.items()):
             a=f"{k} = {v}"
             model_values.append(v)
-            align_bottom=align_bottom-int((align_bottom*0.3))
-            cv2.putText(im, str(a), (int(align_right),align_bottom), cv2.FONT_HERSHEY_TRIPLEX, 1,(225,225,225), 1, cv2.LINE_8)
+            self.draw_text_count(img=im, text=str(a).capitalize(), uv_top_left=[int(im.shape[1]-(0.95*im.shape[1])), int(im.shape[0]-(0.95*im.shape[0]))])
+            # align_bottom=align_bottom-int((align_bottom*0.3))
+            # cv2.putText(im, str(a), (int(align_right),align_bottom), cv2.FONT_HERSHEY_TRIPLEX, 1,(225,225,225), 1, cv2.LINE_8)
+        
+            
+
 
 
     def model_switch(self, model, img_size):
@@ -121,7 +180,7 @@ class Inferer:
                     
                     founded_classes[self.class_names[class_index]]=int(n)
                     
-                    self.count(founded_classes=founded_classes,im=img_ori)  
+                    self.count_objects(founded_classes=founded_classes,im=img_ori)  
 
 
                 for *xyxy, conf, cls in reversed(det):
