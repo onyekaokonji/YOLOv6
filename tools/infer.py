@@ -17,13 +17,13 @@ from yolov6.core.inferer_and_count import Inferer
 
 def get_args_parser(add_help=True):
     parser = argparse.ArgumentParser(description='YOLOv6 PyTorch Inference.', add_help=add_help)
-    parser.add_argument('--weights', type=str, default='weights/yolov6s.pt', help='model path(s) for inference.')
+    parser.add_argument('--weights', type=str, default='assets/weights/train_model.pt', help='model path(s) for inference.')
     parser.add_argument('--source', type=str, default='data/images', help='the source path, e.g. image-file/dir.')
     parser.add_argument('--webcam', action='store_true', help='whether to use webcam.')
     parser.add_argument('--webcam-addr', type=str, default='0', help='the web camera address, local camera or rtsp address.')
-    parser.add_argument('--yaml', type=str, default='data/coco.yaml', help='data yaml file.')
+    parser.add_argument('--yaml', type=str, default='data/dataset.yaml', help='data yaml file.')
     parser.add_argument('--img-size', nargs='+', type=int, default=[640, 640], help='the image-size(h,w) in inference size.')
-    parser.add_argument('--conf-thres', type=float, default=0.4, help='confidence threshold for inference.')
+    parser.add_argument('--conf-thres', type=float, default=0.2, help='confidence threshold for inference.')
     parser.add_argument('--iou-thres', type=float, default=0.45, help='NMS IoU threshold for inference.')
     parser.add_argument('--max-det', type=int, default=1000, help='maximal inferences per image.')
     parser.add_argument('--device', default='0', help='device to run our model i.e. 0 or 0,1,2,3 or cpu.')
